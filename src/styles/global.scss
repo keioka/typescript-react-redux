@@ -1,0 +1,17 @@
+:root {
+  --red: #dfdfdf;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../assets/fonts/Raleway/Raleway-Black.ttf') format('tff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+body {
+  font-weight: 500;
+  font-family: 'Raleway';
+  padding: 0;
+  margin: 0;
+}
