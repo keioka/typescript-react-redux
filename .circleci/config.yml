@@ -11,9 +11,9 @@ jobs:
           command: echo ${CIRCLE_BRANCH}
 
       - restore_cache:
-        name: Restore Yarn Package Cache
-        keys:
-          - yarn-packages-{{ checksum "yarn.lock" }}
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
 
       - run: 
           name: Package Install
