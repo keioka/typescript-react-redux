@@ -73,17 +73,3 @@ jobs:
           command: ./node_modules/.bin/firebase deploy -P staging --token=$FIREBASE_TOKEN;
           branches:
             only: staging
-
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - production
-                - staging
