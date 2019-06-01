@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: Stylelint
-          command: yarn csslint
+          command: yarn stylelint
       
       - run:
           name: Test
