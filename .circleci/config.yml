@@ -39,13 +39,14 @@ jobs:
       - run:
           name: Stylelint
           command: yarn stylelint
-  test:
-    docker:
-      - image: node:10
-    steps:
-      - run:
-          name: Test
-          command: yarn test
+  # test:
+  #   docker:
+  #     - image: node:10
+  #   steps:
+  #     - run:
+  #         name: Test
+  #         command: yarn test
+
   build:
     docker:
       - image: node:10
