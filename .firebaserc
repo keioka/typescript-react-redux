@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "tasktracker-e1f61",
+    "staging": "tasktracker-staging",
+    "production": "tasktracker-production"
+  }
+}

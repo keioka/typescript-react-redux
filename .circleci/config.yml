@@ -1,21 +1,20 @@
 version: 2
 jobs:
-  build:
+  init:
     docker:
       - image: node:10
-
     steps:
       - checkout
       - run: # test what branch we're on.
-          name: "Environment"
-          command: echo ${CIRCLE_BRANCH}
+        name: "Environment"
+        command: echo ${CIRCLE_BRANCH}
 
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+        name: Restore Yarn Package Cache
+        keys:
+          - yarn-packages-{{ checksum "yarn.lock" }}
 
-      - run: 
+      - run:
           name: Package Install
           command: yarn install --frozen-lockfile
 
@@ -29,6 +28,10 @@ jobs:
           name: "List directory"
           command: ls
 
+  lint:
+    docker:
+      - image: node:10
+    steps:
       - run:
           name: TSlint
           command: yarn tslint
@@ -36,19 +39,51 @@ jobs:
       - run:
           name: Stylelint
           command: yarn stylelint
-      
+  test:
+    docker:
+      - image: node:10
+    steps:
       - run:
           name: Test
           command: yarn test
-
+  build:
+    docker:
+      - image: node:10
+    steps:
       - run:
           name: Build
           command: yarn build
-#   deploy:
-#     steps:
-#       - run:
-#           name: Firebase login
-#           commnad: 
-#       - run:
-#           name: Deploy 
-#           command:
+    branches:
+      only:
+        - production
+        - staging
+
+  deploy:
+    docker:
+      - image: node:10
+    steps:
+      - run:
+          name: "Deploy to staging"
+          command: ./node_modules/.bin/firebase deploy -P prodcution --token=$FIREBASE_TOKEN;
+          branches:
+            only: production
+
+      - run:
+          name: "Deploy to production"
+          command: ./node_modules/.bin/firebase deploy -P staging --token=$FIREBASE_TOKEN;
+          branches:
+            only: staging
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - production
+                - staging
