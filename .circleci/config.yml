@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+
+    steps:
+      - run: # test what branch we're on.
+          name: "Environment"
+          command: echo ${CIRCLE_BRANCH}
+
+      - run: 
+          name: Package Install
+          command: yarn install
+
+      - run:
+          name: TSlint
+          command: yarn tslint
+
+      - run:
+          name: CSSlint
+          command: yarn csslint
+
+      - run:
+          name: CSSlint
+          command: yarn build
