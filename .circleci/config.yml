@@ -36,11 +36,11 @@ jobs:
       - run:
           name: CSSlint
           command: yarn build
-  deploy:
-    steps:
-      - run:
-          name: Firebase login
-          commnad: 
-      - run:
-          name: Deploy 
-          command:
+#   deploy:
+#     steps:
+#       - run:
+#           name: Firebase login
+#           commnad: 
+#       - run:
+#           name: Deploy 
+#           command:
