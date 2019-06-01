@@ -34,11 +34,15 @@ jobs:
           command: yarn tslint
 
       - run:
-          name: CSSlint
+          name: Stylelint
           command: yarn csslint
+      
+      - run:
+          name: Test
+          command: yarn test
 
       - run:
-          name: CSSlint
+          name: Build
           command: yarn build
 #   deploy:
 #     steps:
