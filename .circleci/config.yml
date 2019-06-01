@@ -5,7 +5,7 @@ jobs:
       - image: node:6.10.2
 
     steps:
-     
+      - checkout
       - run: # test what branch we're on.
           name: "Environment"
           command: echo ${CIRCLE_BRANCH}
