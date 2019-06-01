@@ -1,9 +1,0 @@
-{
-  "ignore": [
-    "adjoining-classes"
-  ],
-  "warnings": [
-  ],
-  "errors": [
-  ]
-}
