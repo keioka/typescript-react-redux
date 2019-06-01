@@ -54,10 +54,10 @@ jobs:
       - run:
           name: Build
           command: yarn build
-    branches:
-      only:
-        - production
-        - staging
+    # branches:
+    #   only:
+    #     - production
+    #     - staging
 
   deploy:
     docker:
