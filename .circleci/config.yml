@@ -25,6 +25,10 @@ jobs:
           paths:
             - ~/.cache/yarn
 
+      - run: # test what branch we're on.
+          name: "List directory"
+          command: ls
+
       - run:
           name: TSlint
           command: yarn tslint
